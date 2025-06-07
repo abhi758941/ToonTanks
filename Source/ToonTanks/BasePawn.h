@@ -31,13 +31,13 @@ public:
 	UPROPERTY(EditAnywhere , BlueprintReadWrite)
 		float Speed = 400;
 
+		UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))	
+			class UCapsuleComponent* CapsuleComp;
+		UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
+			UStaticMeshComponent* BaseMesh;
+		UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))	
+			UStaticMeshComponent* TurretMesh;
+		UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
+			USceneComponent* ProjectileSpawnPoint;
 private:
-	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))	
-		class UCapsuleComponent* CapsuleComp;
-	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
-		UStaticMeshComponent* BaseMesh;
-	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))	
-		UStaticMeshComponent* TurretMesh;
-	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
-		USceneComponent* ProjectileSpawnPoint;
 };
