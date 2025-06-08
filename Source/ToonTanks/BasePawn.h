@@ -23,21 +23,20 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
 
 
 public:
 	UPROPERTY(EditAnywhere , BlueprintReadWrite)
 		float Speed = 400;
 
-		UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))	
-			class UCapsuleComponent* CapsuleComp;
-		UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
-			UStaticMeshComponent* BaseMesh;
-		UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))	
-			UStaticMeshComponent* TurretMesh;
-		UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
-			USceneComponent* ProjectileSpawnPoint;
+	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))	
+		class UCapsuleComponent* CapsuleComp;
+	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
+		UStaticMeshComponent* BaseMesh;
+	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))	
+		UStaticMeshComponent* TurretMesh;
+	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
+		USceneComponent* ProjectileSpawnPoint;
 private:
 };
