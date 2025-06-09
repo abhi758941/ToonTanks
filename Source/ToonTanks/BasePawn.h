@@ -27,9 +27,6 @@ public:
 
 
 public:
-	UPROPERTY(EditAnywhere , BlueprintReadWrite)
-		float Speed = 400;
-
 	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))	
 		class UCapsuleComponent* CapsuleComp;
 	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
