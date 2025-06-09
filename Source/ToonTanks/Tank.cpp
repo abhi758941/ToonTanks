@@ -11,11 +11,24 @@ ATank::ATank()
     Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
     Camera-> SetupAttachment(SpringArm); 
 }
+
+void ATank::BeginPlay()
+{
+    Super::BeginPlay();
+    PlayerControllerRef = Cast<APlayerController>(GetController());
+}
+
+void ATank::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+    Rotate();
+}
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
     PlayerInputComponent->BindAxis(TEXT("MoveForward") , this , &ATank::Move);
     PlayerInputComponent->BindAxis(TEXT("Turn") , this , &ATank::Turn);
+    PlayerInputComponent->BindAction(TEXT("Fire") , IE_Pressed , this , &ATank::Fire);
 }
 
 void ATank::Move(float Value)
@@ -37,4 +50,15 @@ void ATank::Turn(float Value)
 
     // DeltaRotation = DeltaRotation*RotationSpeed*(UGameplayStatics::GetWorldDeltaSeconds(this));
     // AddActorLocalRotation(DeltaRotation , true);
+}
+
+void ATank::Rotate()
+{
+    if(PlayerControllerRef)
+    {
+        FHitResult HitResult;
+        PlayerControllerRef->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility , false , HitResult);
+        RotateTurret(HitResult.ImpactPoint);
+        DrawDebugSphere(GetWorld() , HitResult.ImpactPoint , 25.f , 12 , FColor::Red , false , -1.f);
+    }
 }

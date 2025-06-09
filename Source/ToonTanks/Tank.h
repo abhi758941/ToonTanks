@@ -21,7 +21,15 @@ class TOONTANKS_API ATank : public ABasePawn
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	public:
+	protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+	public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+	
+	
 		
 	private:
 	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
@@ -37,9 +45,13 @@ class TOONTANKS_API ATank : public ABasePawn
 	UPROPERTY(EditAnywhere , BlueprintReadWrite , meta = (AllowPrivateAccess = "true"))
 		float RotationSpeed = 50;
 	
+
+	APlayerController* PlayerControllerRef;
 	
 	UFUNCTION(BlueprintCallable)
 		void Move(float Value);
 	UFUNCTION(BlueprintCallable)
 		void Turn(float Value);
+	UFUNCTION(BlueprintCallable)
+		void Rotate();
 };
