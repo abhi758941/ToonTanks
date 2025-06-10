@@ -15,21 +15,27 @@ public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
 
+	UFUNCTION()
+	void HandleDestruction();
+
 protected:
 	UFUNCTION()
 		void RotateTurret(FVector LookAtTarget);
 	UFUNCTION(BlueprintCallable)
 		void Fire();
 public:
-	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))	
-		class UCapsuleComponent* CapsuleComp;
-	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
-		UStaticMeshComponent* BaseMesh;
-	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))	
-		UStaticMeshComponent* TurretMesh;
-	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
-		USceneComponent* ProjectileSpawnPoint;
-	UPROPERTY(EditAnywhere , BlueprintReadWrite , Category = "Movement" , meta = (AllowPrivateAccess = "true"))
-		float InterpSpeed = 100.f;
 private:
+UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))	
+	class UCapsuleComponent* CapsuleComp;
+UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
+	UStaticMeshComponent* BaseMesh;
+UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))	
+	UStaticMeshComponent* TurretMesh;
+UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
+	USceneComponent* ProjectileSpawnPoint;
+UPROPERTY(EditAnywhere , BlueprintReadWrite , Category = "Movement" , meta = (AllowPrivateAccess = "true"))
+	float InterpSpeed = 100.f;
+
+UPROPERTY(EditDefaultsOnly , Category = "Combat")
+	TSubclassOf<class AProjectile> ProjectileClass;
 };

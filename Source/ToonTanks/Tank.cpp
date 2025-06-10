@@ -1,13 +1,12 @@
 #include "Tank.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "Components/CapsuleComponent.h"
 #include "Kismet/GameplayStatics.h"
 
 ATank::ATank()
 {
     SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm"));
-    SpringArm->SetupAttachment(CapsuleComp);
+    SpringArm->SetupAttachment(RootComponent);
     Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
     Camera-> SetupAttachment(SpringArm); 
 }
@@ -15,7 +14,7 @@ ATank::ATank()
 void ATank::BeginPlay()
 {
     Super::BeginPlay();
-    PlayerControllerRef = Cast<APlayerController>(GetController());
+    TankPlayerController = Cast<APlayerController>(GetController());
 }
 
 void ATank::Tick(float DeltaTime)
@@ -23,6 +22,14 @@ void ATank::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
     Rotate();
 }
+
+void ATank::HandleDestruction()
+{
+    Super::HandleDestruction();
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
+}
+
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -54,11 +61,12 @@ void ATank::Turn(float Value)
 
 void ATank::Rotate()
 {
-    if(PlayerControllerRef)
+    if(TankPlayerController)
     {
         FHitResult HitResult;
-        PlayerControllerRef->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility , false , HitResult);
+        TankPlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility , false , HitResult);
         RotateTurret(HitResult.ImpactPoint);
         DrawDebugSphere(GetWorld() , HitResult.ImpactPoint , 25.f , 12 , FColor::Red , false , -1.f);
     }
 }
+

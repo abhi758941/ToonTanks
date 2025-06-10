@@ -28,8 +28,8 @@ class TOONTANKS_API ATank : public ABasePawn
 	public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	
-	
+		void HandleDestruction();
+		class APlayerController* GetTankPlayerController() const {return TankPlayerController;}
 		
 	private:
 	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
@@ -46,7 +46,7 @@ class TOONTANKS_API ATank : public ABasePawn
 		float RotationSpeed = 50;
 	
 
-	APlayerController* PlayerControllerRef;
+	APlayerController* TankPlayerController;
 	
 	UFUNCTION(BlueprintCallable)
 		void Move(float Value);
