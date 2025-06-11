@@ -35,7 +35,12 @@ UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , m
 	USceneComponent* ProjectileSpawnPoint;
 UPROPERTY(EditAnywhere , BlueprintReadWrite , Category = "Movement" , meta = (AllowPrivateAccess = "true"))
 	float InterpSpeed = 100.f;
-
+UPROPERTY(EditAnywhere , Category = "Death")
+	class UParticleSystem* DeathParticles;
+UPROPERTY(EditAnywhere , Category = "Combat")
+	class USoundBase* DeathSound;
+UPROPERTY(EditAnywhere , Category = "Combat")
+	TSubclassOf<class UCameraShakeBase> DeathCameraShakeClass;
 UPROPERTY(EditDefaultsOnly , Category = "Combat")
 	TSubclassOf<class AProjectile> ProjectileClass;
 };

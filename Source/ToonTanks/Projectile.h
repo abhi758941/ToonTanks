@@ -32,6 +32,17 @@ UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Projectile Movement
 	class UProjectileMovementComponent* ProjectileMovementComponent; 
 UPROPERTY(EditAnywhere)
 	float Damage = 50.f;
+UPROPERTY(EditAnywhere , Category = "Combat")
+	class UParticleSystem* HitParticles;
+UPROPERTY(VisibleAnywhere , Category = "Mesh")
+	class UParticleSystemComponent* SmokeTrail;
+UPROPERTY(EditAnywhere , Category = "Combat")
+	class USoundBase* LaunchSound;
+UPROPERTY(EditAnywhere , Category = "Combat")
+	USoundBase* HitSound;
+UPROPERTY(EditAnywhere , Category = "Combat")
+	TSubclassOf<class UCameraShakeBase> HitCameraShakeClass;
+	
 UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp , AActor* OtherActor , UPrimitiveComponent* OtherComp , FVector NormalImpulse , const FHitResult& Hit);
 };

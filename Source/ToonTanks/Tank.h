@@ -30,6 +30,7 @@ class TOONTANKS_API ATank : public ABasePawn
 	virtual void Tick(float DeltaTime) override;
 		void HandleDestruction();
 		class APlayerController* GetTankPlayerController() const {return TankPlayerController;}
+		bool bAlive = true;
 		
 	private:
 	UPROPERTY(VisibleAnywhere , BlueprintReadWrite , Category = "Model elements" , meta = (AllowPrivateAccess = "true"))
@@ -44,6 +45,7 @@ class TOONTANKS_API ATank : public ABasePawn
 		float MovementSpeed = 50;
 	UPROPERTY(EditAnywhere , BlueprintReadWrite , meta = (AllowPrivateAccess = "true"))
 		float RotationSpeed = 50;
+	
 	
 
 	APlayerController* TankPlayerController;
